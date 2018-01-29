@@ -40,11 +40,10 @@
 					<li class="active"><a href="#abstract">Abstract <span
 							class="sr-only">(current)</span></a></li>
 
-					<li><a href="#qualitymetrics">Coupling Metrics</a></li>
 					<li><a href="#detectionstrategy">Detection Strategy</a></li>
-					<li><a href="#thresholds">Thresholds</a></li>
+					<li><a href="#thresholds">Metric Distribution</a></li>
 					<li><a href="#downloads">Downloads</a></li>
-				<!--<li><a href="#authors">Authors</a></li> -->
+					<!--<li><a href="#authors">Authors</a></li> -->
 					<li><a href="#references">References</a></li>
 
 				</ul>
@@ -65,29 +64,73 @@
 			</h1>
 		</div>
 		<br>
-		 <p class="text-justify">This website contains complementary data to the submitted
-		paper.</p>
+		<p class="text-justify">This website contains complementary data
+			to the submitted paper.</p>
 
 		<h3 id="abstract" class="page-header">Abstract</h3>
-		<p class="text-justify">Component-based software product line (SPL) is a set of software products that share architectural components. SPL product composition requires that each architectural component follows three principles: encapsulates one feature; restricts data access; and be replaceable. However, after decomposing features into architectural components, developers might introduce anomalous structures, i.e., code smells, in the component implementation. Code smells might violate those principles and hinder the SPL product composition. Thus, developers should identify code smells in component-based SPLs, especially those affecting highly coupled components, which are called critical components. Nevertheless, there is limited evidence on how SPL developers perceive critical components and how smelly are these components in component-based SPLs. This paper addresses such limitation via a mixed-method empirical study. We survey developers of three SPLs about their perceptions of a critical component. Per SPL, we characterize its critical components and identify nine recurring type of code smells. We then quantitatively assess how smelly are critical and non-critical components. Our results suggest that: SPL developers perceive critical components as highly coupled to others, as suggested by the literature; critical components are ten times more prone to have code smells than non-critical ones; and the most frequent code smell types violate various component principles.</p>
+		<p class="text-justify">Component-based software product line
+			(SPL) is a set of software products that share architectural
+			components. SPL product composition requires that each architectural
+			component follows three principles: encapsulates one feature;
+			restricts data access; and be replaceable. However, after decomposing
+			features into architectural components, developers might introduce
+			anomalous structures, i.e., code smells, in the component
+			implementation. Code smells might violate those principles and hinder
+			the SPL product composition. Thus, developers should identify code
+			smells in component-based SPLs, especially those affecting highly
+			coupled components, which are called critical components.
+			Nevertheless, there is limited evidence on how SPL developers
+			perceive critical components and how smelly are these components in
+			component-based SPLs. This paper addresses such limitation via a
+			mixed-method empirical study. We survey developers of three SPLs
+			about their perceptions of a critical component. Per SPL, we detect
+			its critical components and identify nine recurring type of code
+			smells. We then quantitatively assess how smelly are critical and
+			non-critical components. Our results suggest that: SPL developers
+			perceive critical components as highly coupled to others, as
+			suggested by the literature; critical components are ten times more
+			prone to have code smells than non-critical ones; and the most
+			frequent code smell types violate various component principles.</p>
+
+
+		<h3 id="detectionstrategy" class="page-header">Detection Strategy</h3>
+		<p class="text-justify">
+			Coupling measures how much a SPL component provides features to other
+			components, or depends on with features provided by other components.
+			That is, coupling metrics aim at capturing to what extent the SPL
+			components are attached to the whole SPL. Thus, a high coupling
+			suggests that a SPL component is strongly attached to others and,
+			therefore, might indicate violations of the component principles,
+			which are: feature encapsulation <a href="#references">[7]</a>; data
+			access restriction <a href="#references">[6]</a>; and replaceability
+			<a href="#references">[5]</a>. It might also suggest that the
+			component realizes an essential feature to the SPL product
+			configuration, due to the high number of dependencies with other
+			components. On the other hand, a low coupling suggests that the SPL
+			component is weakly coupled to others, which might indicate that
+			those three component principles are properly followed by the
+			component. It might also suggest that the component realizes a
+			feature that is not essential to the SPL product configuration, due
+			to the low number of component inter-dependencies. In order to detect
+			critical components in component-based SPLs, we used a coupling
+			metric-based strategy proposed in the literature <a
+				href="#references">[8]</a>. A metric-based strategy combines
+			multiples metrics to detect components that satisfy a property, the
+			component criticality in our case.
+		</p>
+
+
+<p class="text-justify">Table 1 presents the coupling metrics used
+			by the select strategy. The first column presents the name of each
+			metric. The second column describes the metric.</p>
+
+<div class="panel panel-default">
+		<div class="panel-heading">
+						<h3 class="panel-title"> Table 1: Metrics combined by the selected strategy to detect critical components</h3>
+					</div>
+		<table class="table table-striped">
 		
 
-		<h3 id="qualitymetrics" class="page-header">Coupling
-			Metrics</h3>
-		<p class="text-justify">Coupling measures how much a SPL component
-			provides functionalities to other components, or depends on
-			functionalities provided by other components. That is, coupling
-			metrics aim at capturing when SPL components are strongly attached to
-			the whole SPL. Thus, a high coupling suggests that the SPL components
-			are strongly attached to other components and, therefore play an
-			essential role in the operation of the product line. On the other
-			hand, a low coupling suggests that the SPL component is not essential
-			to operate the product line. In order to characterize critical
-			components in component-based SPL, we used the following conventional
-			coupling metrics. The first column presents the name of each metric.
-			The second column describes the metric.</p>
-		
-		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>Metric</th>
@@ -128,30 +171,33 @@
 			</tbody>
 		</table>
 
-		<h3 id="detectionstrategy" class="page-header">Detection Strategy</h3>
-		<p class="text-justify">The figure 1 presents a metric-based
-			strategy that we used for characterizing critical components. A detection strategy
-			combines multiples metrics to characterize components that satisfy a
-			property, the component criticality in our case. We assume that both
-			FANIN and CBO explicitly capture coupling between critical
+</div>
+
+
+
+
+		<p class="text-justify">Figure 1 presents the metric-based
+			strategy selected for detecting critical components. We assume that
+			both FANIN and CBO explicitly capture coupling between critical
 			components. Based on the literature of component-based SPL, a
 			critical component is the one that has too many dependencies with
 			other components, which we can measure with CBO > Threshold and FANIN
 			> Threshold. However, from our viewpoint, FANOUT > Threshold may not
-			suffice to characterize critical components because, considering the
-			SPL architecture, each component tend to use features provided by
-			several other components. However, when a component is deeply located
-			in the inheritance tree and has too many children components, such
-			external dependencies indicated by FANOUT > Threshold may negatively
-			impact on the SPL product configuration, which makes the critical
-			components. Thus, FANOUT has to be combined with DIT > Threshold and
-			NOC > Threshold for capturing critical components.</p>
-	
+			suffice to detect critical components because, considering the SPL
+			architecture, each component tend to use features provided by several
+			other components. However, when a component is deeply located in the
+			inheritance tree and has too many children components, such external
+			dependencies indicated by FANOUT > Threshold may negatively impact on
+			the SPL product configuration, which makes the critical components.
+			Thus, FANOUT has to be combined with DIT > Threshold and NOC >
+			Threshold for capturing critical components.</p>
+
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Figure 1: Detection Strategy</h3>
+						<h3 class="panel-title">Figure 1: Metric-based strategy for
+							detecting critical components</h3>
 					</div>
 					<div class="panel-body" style="text-align: center;">
 						<input type="image" src="download/DetectionStrategy.png"
@@ -160,147 +206,165 @@
 				</div>
 			</div>
 		</div>
-		
-		
-		<h3 id="thresholds" class="page-header">Thresholds</h3>
-		<p class="text-justify">We analyzed the distribution of each metrics to select a threshold
-		derivation method that best fits our metric distributions. Figure
-		2 shows that the five metrics follow a heavy-tailed
-		distribution <a href="#references">[3]</a>, in which the higher the metric
-		value, the more critical is the metric.</p>
-	
 
-	<div class="row">
+		
+
+		<h3 id="thresholds" class="page-header">Metric Distribution</h3>
+		<p class="text-justify">
+			We analyzed the distribution of each metric to select a threshold
+			derivation method that best fits our metric distributions. Figure 2
+			shows that the five metrics follow a heavy-tailed distribution <a
+				href="#references">[3]</a>, in which the higher the metric value,
+			the more critical is the metric.
+		</p>
+
+
+		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Figure 2: Distribution of Frequency per Software Metric
-						</h3>
+						<h3 class="panel-title">Figure 2: Distribution of Frequency
+							per Software Metric</h3>
 					</div>
 					<div class="panel-body" style="text-align: center;">
-						<input type="image" src="download/vioplots.png"
-							width="850" height="367">
+						<input type="image" src="download/vioplots.png" width="850"
+							height="367">
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<p class="text-justify">
-		
-		This strategy combines five selected
-		metrics presented in the section <a href="#qualitymetrics">Coupling Metrics</a>. Based on a reference
-		list of code smells derived from the viewpoint of the SPL developers,
-		we have obtained up to 86.3% of precision and 28.3% of recall. To
-		derive thresholds that characterize critical metric values (see
-		discussion of Figure 2, we used a quantile-based
-		method from the literature <a href="#references">[4]</a>. It defines five
-		value intervals, including high (values > 90%) and very high
-		(values > 95%). We call <em>Critical</em> the interval [90%,
-		95%], which has the critical SPL component, and <em>Strongly
-		Critical</em> the interval [95%, 100%], which has the most critical
-		components.
-		<br> Table below presents the thresholds derived, using all three collected SPLs for our study. The first column groups the software metrics per level at the source code, namely method and component. The second column lists the metrics. The remaining columns presents the four computed thresholds: 3%, 15%, 90%, and 95%.
-		
-</p>
+
+			To derive thresholds that characterize critical metric values
+			(see discussion of Figure 2), we used a quantile-based method from the
+			literature <a href="#references">[4]</a>. It defines five value
+			intervals, including high (values > 90%) and very high (values >
+			95%). We call <em>Critical</em> the interval [90%, 95%], which has
+			the critical SPL component, and <em>Strongly Critical</em> the
+			interval [95%, 100%], which has the most critical components. Table
+			2 presents the thresholds with derived from three SPLs selected for conductin our study. The first column groups the software metrics per level
+			at the source code, namely method and component. The second column
+			lists the metrics. The remaining columns present the four computed
+			thresholds: 3%, 15%, 90%, and 95%.
+
+		</p>
+
+
+<div class="panel panel-default">
+		<div class="panel-heading">
+						<h3 class="panel-title"> Table 2: Metric thresholds derived from the three selected SPLs.</h3>
+					</div>
 
 
 
-
-
-<table class="table table-striped">
- <thead>
- 
-  <tr>
-    <th>Metric Level</th>
-    <th>Software Metric</th>
-    <th>3%</th>
-    <th>15%</th>
-    <th>90%</th>
-    <th>95%</th>
-  </tr>
-  	</thead>
-  	<tbody>
-  <tr>
-    <td rowspan="2">Method</td>
-    <td>FANOUT</td>
-    <td>0</td>
-    <td>1</td>
-    <td>34</td>
-    <td>46.85</td>
-  </tr>
-  <tr>
-    <td>FANIN</td>
-    <td>0</td>
-    <td>2</td>
-    <td>30</td>
-    <td>40</td>
-  </tr>
-  <tr>
-    <td rowspan="3">Component</td>
-    <td>CBO</td>
-    <td>0</td>
-    <td>0</td>
-    <td>6</td>
-    <td>8</td>
-  </tr>
-  <tr>
-    <td>NOC</td>
-    <td>0</td>
-    <td>0</td>
-    <td>1</td>
-    <td>1</td>
-  </tr>
-  <tr>
-    <td>DIT</td>
-    <td>0</td>
-    <td>0</td>
-    <td>3</td>
-    <td>3</td>
-  </tr>
-  </tbody>
-</table>
-
-
-<h3 id="downloads" class="page-header">Downloads</h3>
 		<table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Artefact</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td> <a href="download/ComponentList_BET-SPL.pdf" target="_blank">Component List of BET-SPL </a></td>
-                    <td> Reference list of critical components, list of critical components and list of strongly critical components.    
-		   </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td> <a href="download/ComponentList_NotePad.pdf" target="_blank">Component List of NotePad</a></td>
-                    <td> Reference list of critical components, list of critical components and list of strongly critical components.    
-		   </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td> <a href="download/ComponentList_MobileMedia.pdf" target="_blank">Component List of MobileMedia</a></td>
-             <td> Reference list of critical components, list of critical components and list of strongly critical components.    
-		       </tr>
-           <tr>
-                    <th scope="row">4</th>
-                    <td> <a href="download/Form_ParticipantCharacterization.pdf" target="_blank">Participant Characterization Form</a></td>
-             <td> This file contains the participant characterization form.    
-		       </tr>
-           <tr>
-                    <th scope="row">5</th>
-                    <td> <a href="download/Form_CriticalComponentElicitation.pdf" target="_blank">Critical Component Elicitation Form</a></td>
-             <td> This file contains the critical component elicitation form.    
-		       </tr>
-           
-            </tbody>
-        </table>
+			<thead>
 
-<!--
+				<tr>
+					<th>Metric Level</th>
+					<th>Software Metric</th>
+					<th>3%</th>
+					<th>15%</th>
+					<th>90%</th>
+					<th>95%</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="2">Method</td>
+					<td>FANOUT</td>
+					<td>0</td>
+					<td>1</td>
+					<td>34</td>
+					<td>46.85</td>
+				</tr>
+				<tr>
+					<td>FANIN</td>
+					<td>0</td>
+					<td>2</td>
+					<td>30</td>
+					<td>40</td>
+				</tr>
+				<tr>
+					<td rowspan="3">Component</td>
+					<td>CBO</td>
+					<td>0</td>
+					<td>0</td>
+					<td>6</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td>NOC</td>
+					<td>0</td>
+					<td>0</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>DIT</td>
+					<td>0</td>
+					<td>0</td>
+					<td>3</td>
+					<td>3</td>
+				</tr>
+			</tbody>
+		</table>
+
+</div>
+		<h3 id="downloads" class="page-header">Downloads</h3>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Artifact</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">1</th>
+					<td><a href="download/ComponentList_BET-SPL.pdf"
+						target="_blank">Component List of BET-SPL </a></td>
+					<td>Reference list of critical components, list of critical
+						components and list of strongly critical components.
+				</tr>
+				<tr>
+					<th scope="row">2</th>
+					<td><a href="download/ComponentList_NotePad.pdf"
+						target="_blank">Component List of NotePad</a></td>
+					<td>Reference list of critical components, list of critical
+						components and list of strongly critical components.
+				</tr>
+				<tr>
+					<th scope="row">3</th>
+					<td><a href="download/ComponentList_MobileMedia.pdf"
+						target="_blank">Component List of MobileMedia</a></td>
+					<td>Reference list of critical components, list of critical
+						components and list of strongly critical components.
+				</tr>
+				<tr>
+					<th scope="row">4</th>
+					<td><a href="download/Form_ParticipantCharacterization.pdf"
+						target="_blank">Participant Characterization Form</a></td>
+					<td>This file contains the participant characterization form.
+
+
+
+					
+				</tr>
+				<tr>
+					<th scope="row">5</th>
+					<td><a href="download/Form_CriticalComponentElicitation.pdf"
+						target="_blank">Critical Component Elicitation Form</a></td>
+					<td>This file contains the critical component elicitation
+						form.
+				</tr>
+
+			</tbody>
+		</table>
+
+		<!--
 		<h3 class="page-header" id="authors">Authors</h3>
 
 		<p>Any question/suggestion please contact the authors of this
@@ -345,6 +409,7 @@
 			software engineering, 20(6), 476-493.
 		</p>
 
+
 		<p class="text-justify">
 			<strong>[2]</strong> Henry, S., & Kafura, D. (1981). <a
 				target="_blank"
@@ -353,20 +418,57 @@
 			Software Engineering, (5), 510-518.
 		</p>
 
-<p class="text-justify">
+		<p class="text-justify">
 			<strong>[3]</strong> T. Filo, M. Bigonha, and K. Ferreira (2015). <a
 				target="_blank"
-				href="http://ieeexplore.ieee.org/abstract/document/1702877/">A catalogue of thresholds for object-oriented software metrics.</a> 1st SOFTENG, p. 48–55, 2015.
+				href="http://ieeexplore.ieee.org/abstract/document/1702877/">A
+				catalogue of thresholds for object-oriented software metrics.</a> 1st
+			SOFTENG, p. 48–55, 2015.
 		</p>
 
-<p class="text-justify">
+		<p class="text-justify">
 			<strong>[4]</strong> G Vale and E. Figueiredo (2015). <a
 				target="_blank"
-				href="http://ieeexplore.ieee.org/abstract/document/1702877/">A method to derive metric thresholds for software product lines.</a> 29th Brazilian Symposium on Software Engineering (SBES), p. 110-119, 2015.
+				href="http://ieeexplore.ieee.org/abstract/document/1702877/">A
+				method to derive metric thresholds for software product lines.</a> 29th
+			Brazilian Symposium on Software Engineering (SBES), p. 110-119, 2015.
 		</p>
 
+		<p class="text-justify">
+			<strong>[5]</strong> Crnkovic and M. Larsson. (2002). <a
+				target="_blank" href="https://dl.acm.org/citation.cfm?id=549265">Building
+				reliable component-based software systems.</a> Artech House.
+		</p>
+
+
+		<p class="text-justify">
+			<strong>[6]</strong> W. Frakes and K. Kang (2005). <a target="_blank"
+				href="http://ieeexplore.ieee.org/document/1492369/">Software
+				reuse research.</a> 31th IEEE transactions on Software Engineering
+			(TSE), p. 529–536, 2005.
+		</p>
+
+		<p class="text-justify">
+			<strong>[7]</strong> C. Krueger (2006). <a target="_blank"
+				href="https://dl.acm.org/citation.cfm?doid=1183236.1183262">New
+				methods in software product line practice.</a> Communications of the
+			ACM, p. 37–40, 2006.
+		</p>
+
+
+		<p class="text-justify">
+			<strong>[8]</strong> A. Uchôa, E. Fernandes, A. C. Bibiano, and A.
+			Garcia (2017). <a target="_blank"
+				href="http://vem2017.ufu.br/artigos/Uchoa_et_al_2017.pdf">Do
+				Coupling Metrics Help Characterize Critical Components in
+				Component-based SPL? An Empirical Study.</a> 5th Workshop on Software
+			Visualization, Evolution and Maintenance (VEM), p. 1-8, 2017.
+		</p>
+
+
 	</div>
-	
+
+
 	<script>
 		(function(i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;
