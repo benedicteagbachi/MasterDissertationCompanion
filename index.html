@@ -84,93 +84,15 @@
 		multiple program elements. Our results also point out to different ways for improving our visualization approach based on the developers’ perceptions. </p>
 
 
-		<h3 id="detectionstrategy" class="page-header">Detection Strategy</h3>
-		<p class="text-justify">
-			Coupling measures how much a SPL component provides features to other
-			components, or depends on with features provided by other components.
-			That is, coupling metrics aim at capturing to what extent the SPL
-			components are attached to the whole SPL. Thus, a high coupling
-			suggests that a SPL component is strongly attached to others and,
-			therefore, might indicate violations of the component principles,
-			which are: feature encapsulation <a href="#references">[7]</a>; data
-			access restriction <a href="#references">[6]</a>; and replaceability
-			<a href="#references">[5]</a>. It might also suggest that the
-			component realizes an essential feature to the SPL product
-			configuration, due to the high number of dependencies with other
-			components. On the other hand, a low coupling suggests that the SPL
-			component is weakly coupled to others, which might indicate that
-			those three component principles are properly followed by the
-			component. It might also suggest that the component realizes a
-			feature that is not essential to the SPL product configuration, due
-			to the low number of component inter-dependencies. In order to detect
-			critical components in component-based SPLs, we used a coupling
-			metric-based strategy proposed in the literature <a
-				href="#references">[8]</a>. A metric-based strategy combines
-			multiples metrics to detect components that satisfy a property, the
-			component criticality in our case.
-		</p>
-
-
-<p class="text-justify">Table 1 presents the coupling metrics used
-			by the select strategy. The first column presents the name of each
-			metric. The second column describes the metric.</p>
-
-<div class="panel panel-default">
-		<div class="panel-heading">
-						<h3 class="panel-title"> Table 1: Metrics combined by the selected strategy to detect critical components</h3>
-					</div>
-		<table class="table table-striped">
 		
 
-			<thead>
-				<tr>
-					<th>Metric</th>
-					<th>Description</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">Coupling Between Objects (CBO) <a
-						href="#references">[1]</a></th>
-					<td>Number of components coupled to one specific component.</td>
-
-				</tr>
-				<tr>
-					<th scope="row">Fan-in (FANIN) <a href="#references">[2]</a></th>
-					<td>Number of dependencies from other components to a specific
-						component.</td>
-
-				</tr>
-				<tr>
-					<th scope="row">Fan-out (FANOUT) <a href="#references">[2]</a></th>
-					<td>Number of dependencies from one components to others.</td>
-
-				</tr>
-				<th scope="row">Depth of Inheritance Tree (DIT) <a
-					href="#references">[1]</a></th>
-				<td>Maximum depth of a component in the inheritance tree.</td>
-
-				</tr>
-				<tr>
-					<th scope="row">Number Of Children (NOC) <a href="#references">[1]</a></th>
-					<td>Number of children components of a component.</td>
-
-				</tr>
-
-
-			</tbody>
-		</table>
-
-</div>
-
-
 		<h3 id="downloads" class="page-header">Downloads</h3>
+		<p>
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Artifact</th>
+					<th>Study 1</th>
 					<th>Description</th>
 				</tr>
 			</thead>
