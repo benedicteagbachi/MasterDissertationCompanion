@@ -66,22 +66,22 @@
 		</div>
 		<br>
 		<p class="text-justify">This website contains complementary data
-			to the submitted paper.</p>
+			to the Master Dissertation.</p>
 
 		<h3 id="abstract" class="page-header">Abstract</h3>
 		<p class="text-justify">Design problems are characterized by violations of design principles
-affecting a software system. Because they often hinder the software maintenance, developers should identify and eliminate design problems whenever
-possible. Nevertheless, identifying design problems is far from trivial. Due to outdated and scarce design documentation, developers not rarely have
-to analyze the source code for identifying these problems. Past studies suggest that code smells are useful hints of design problems. However, recent
-studies show that a single code smell might not suffice to reveal a design problem. That is, around 80% of design problems are realized by multiple
-code smells, which interrelate in the so-called smell agglomerations. Thus, developers can explore each smell agglomeration to identify a design problem
-in the source code. However, certain smell agglomerations are formed by several code smells, which makes it hard reasoning about the existence of
-a design problem. Visualization approaches have been proposed to represent smell agglomerations and guide developers in identifying design problems.
-However, those approaches provide a very limited support to the identification of specific design problems, especially the ones affecting multiple design
-elements. This dissertation aims to address this limitation by proposing a novel approach for the visualization of smell agglomerations. We rely on
-evidence collected from multiple empirical studies to design our approach. We evaluate our approach with developers from both academy and industry.
-Our results suggest that various developers could use our visualization approach to accurately identify design problems, in particular those affecting
-multiple program elements. Our results also point out to different ways for improving our visualization approach based on the developers’ perceptions. </p>
+		affecting a software system. Because they often hinder the software maintenance, developers should identify and eliminate design problems whenever
+		possible. Nevertheless, identifying design problems is far from trivial. Due to outdated and scarce design documentation, developers not rarely have
+		to analyze the source code for identifying these problems. Past studies suggest that code smells are useful hints of design problems. However, recent
+		studies show that a single code smell might not suffice to reveal a design problem. That is, around 80% of design problems are realized by multiple
+		code smells, which interrelate in the so-called smell agglomerations. Thus, developers can explore each smell agglomeration to identify a design problem
+		in the source code. However, certain smell agglomerations are formed by several code smells, which makes it hard reasoning about the existence of
+		a design problem. Visualization approaches have been proposed to represent smell agglomerations and guide developers in identifying design problems.
+		However, those approaches provide a very limited support to the identification of specific design problems, especially the ones affecting multiple design
+		elements. This dissertation aims to address this limitation by proposing a novel approach for the visualization of smell agglomerations. We rely on
+		evidence collected from multiple empirical studies to design our approach. We evaluate our approach with developers from both academy and industry.
+		Our results suggest that various developers could use our visualization approach to accurately identify design problems, in particular those affecting
+		multiple program elements. Our results also point out to different ways for improving our visualization approach based on the developers’ perceptions. </p>
 
 
 		<h3 id="detectionstrategy" class="page-header">Detection Strategy</h3>
@@ -165,144 +165,6 @@ multiple program elements. Our results also point out to different ways for impr
 </div>
 
 
-
-
-		<p class="text-justify">Figure 1 presents the metric-based
-			strategy selected for detecting critical components. We assume that
-			both FANIN and CBO explicitly capture coupling between critical
-			components. Based on the literature of component-based SPL, a
-			critical component is the one that has too many dependencies with
-			other components, which we can measure with CBO > Threshold and FANIN
-			> Threshold. However, from our viewpoint, FANOUT > Threshold may not
-			suffice to detect critical components because, considering the SPL
-			architecture, each component tend to use features provided by several
-			other components. However, when a component is deeply located in the
-			inheritance tree and has too many children components, such external
-			dependencies indicated by FANOUT > Threshold may negatively impact on
-			the SPL product configuration, which makes the critical components.
-			Thus, FANOUT has to be combined with DIT > Threshold and NOC >
-			Threshold for capturing critical components.</p>
-
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Figure 1: Metric-based strategy for
-							detecting critical components</h3>
-					</div>
-					<div class="panel-body" style="text-align: center;">
-						<input type="image" src="download/DetectionStrategy.png"
-							width="850" height="367">
-					</div>
-				</div>
-			</div>
-		</div>
-
-		
-
-		<h3 id="thresholds" class="page-header">Metric Distribution</h3>
-		<p class="text-justify">
-			We analyzed the distribution of each metric to select a threshold
-			derivation method that best fits our metric distributions. Figure 2
-			shows that the five metrics follow a heavy-tailed distribution <a
-				href="#references">[3]</a>, in which the higher the metric value,
-			the more critical is the metric.
-		</p>
-
-
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Figure 2: Distribution of Frequency
-							per Software Metric</h3>
-					</div>
-					<div class="panel-body" style="text-align: center;">
-						<input type="image" src="download/vioplots.png" width="850"
-							height="367">
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<p class="text-justify">
-
-			To derive thresholds that characterize critical metric values
-			(see discussion of Figure 2), we used a quantile-based method from the
-			literature <a href="#references">[4]</a>. It defines five value
-			intervals, including high (values > 90%) and very high (values >
-			95%). We call <em>Critical</em> the interval [90%, 95%], which has
-			the critical SPL component, and <em>Strongly Critical</em> the
-			interval [95%, 100%], which has the most critical components. Table
-			2 presents the thresholds with derived from three SPLs selected for conductin our study. The first column groups the software metrics per level
-			at the source code, namely method and component. The second column
-			lists the metrics. The remaining columns present the four computed
-			thresholds: 3%, 15%, 90%, and 95%.
-
-		</p>
-
-
-<div class="panel panel-default">
-		<div class="panel-heading">
-						<h3 class="panel-title"> Table 2: Metric thresholds derived from the three selected SPLs.</h3>
-					</div>
-
-
-
-		<table class="table table-striped">
-			<thead>
-
-				<tr>
-					<th>Metric Level</th>
-					<th>Software Metric</th>
-					<th>3%</th>
-					<th>15%</th>
-					<th>90%</th>
-					<th>95%</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td rowspan="2">Method</td>
-					<td>FANOUT</td>
-					<td>0</td>
-					<td>1</td>
-					<td>34</td>
-					<td>46.85</td>
-				</tr>
-				<tr>
-					<td>FANIN</td>
-					<td>0</td>
-					<td>2</td>
-					<td>30</td>
-					<td>40</td>
-				</tr>
-				<tr>
-					<td rowspan="3">Component</td>
-					<td>CBO</td>
-					<td>0</td>
-					<td>0</td>
-					<td>6</td>
-					<td>8</td>
-				</tr>
-				<tr>
-					<td>NOC</td>
-					<td>0</td>
-					<td>0</td>
-					<td>1</td>
-					<td>1</td>
-				</tr>
-				<tr>
-					<td>DIT</td>
-					<td>0</td>
-					<td>0</td>
-					<td>3</td>
-					<td>3</td>
-				</tr>
-			</tbody>
-		</table>
-
-</div>
 		<h3 id="downloads" class="page-header">Downloads</h3>
 		<table class="table table-striped">
 			<thead>
